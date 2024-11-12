@@ -1,5 +1,5 @@
-<html><head><base href="">
-
+<html lang="es"><head><base href="">
+    <link rel="icon" type="image/x-icon" href="https://github.com/malelemdz/mariayjuan/blob/main/source/ico_boda.png?raw=true">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>María & Juan - Nuestra Boda</title>
@@ -25,11 +25,12 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; 
             justify-content: center;
             padding: 2rem;
             position: relative;
             overflow: hidden;
+            text-align: center; 
         }
 
         .hero {
@@ -185,7 +186,7 @@
             padding: 2rem;
             width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 auto; 
         }
 
         .gallery-item {
@@ -414,7 +415,7 @@
             <div class="details">
                 <h2 class="section-title">Ceremonia & Recepción</h2>
                 <p>16:00 hrs</p>
-                <p>Jardín de las Rosas</p>
+                <p>Salón de eventos: Jardín de las Rosas</p>
                 <img class="venue-image" src="https://images.pexels.com/photos/17023023/pexels-photo-17023023/free-photo-of-restaurante-hotel-cena-arboles.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Vista frontal del Jardín de las Rosas, elegante jardín de eventos con arcos florales" width="800" height="300">
                 <img class="venue-image" src="https://images.pexels.com/photos/17023021/pexels-photo-17023021/free-photo-of-ligero-restaurante-hotel-cena.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Área de recepción del Jardín de las Rosas decorada para bodas" width="800" height="300">
                 <button class="button" onclick="window.open('https://maps.google.com/?q=wedding+venue')">Ver ubicación</button>
@@ -483,8 +484,8 @@
             <div class="details">
                 <h2 class="section-title" style="margin-bottom: 2rem;">Nos gustaría compartir este día contigo</h2>
                 <h2 class="section-title">Confirma tu Asistencia</h2>
-                <button class="button" onclick="confirmAttendance('groom')">Familia del Novio</button>
-                <button class="button" onclick="confirmAttendance('bride')">Familia de la Novia</button>
+                <button class="button" onclick="confirmAttendance('groom')">Invitados del Novio</button>
+                <button class="button" onclick="confirmAttendance('bride')">Invitados de la Novia</button>
             </div>
         </section>
 
@@ -552,8 +553,8 @@
         }
 
         function confirmAttendance(side) {
-            const phone = side === 'groom' ? '+1234567890' : '+0987654321';
-            window.open(`https://wa.me/${phone}?text=Confirmo mi asistencia a la boda`);
+            const phone = side === 'groom' ? '‪+59162643571‬' : '+59162643571';
+            window.open(`https://wa.me/${phone}?text=Hola, quiero un invitación de boda`);
         }
 
         setInterval(updateCountdown, 1000);
