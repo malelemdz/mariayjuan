@@ -1,0 +1,563 @@
+<html><head><base href="">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>María & Juan - Nuestra Boda</title>
+    <style>
+        :root {
+            --primary-color: #f3d4d4;
+            --secondary-color: #b48e8e;
+            --accent-color: #d4af37;
+            --font-romantic: 'Great Vibes', cursive;
+            --font-main: 'Raleway', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background: linear-gradient(45deg, #fff1f1, #fff7f7);
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero {
+            background: url('https://images.pexels.com/photos/28105141/pexels-photo-28105141/free-photo-of-pajarita-hombre-amor-mujer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.3)
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: var(--font-romantic);
+            font-size: clamp(3em, 10vw, 6em);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            animation: fadeIn 2s ease;
+        }
+
+        .date {
+            font-family: var(--font-romantic);
+            font-size: clamp(1.5em, 5vw, 2.5em);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 1rem 0;
+        }
+
+        .countdown {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .details {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            width: 80%;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .button {
+            background: var(--accent-color);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            margin: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .floating-music {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .section-title {
+            font-family: var(--font-romantic);
+            font-size: 3em;
+            color: var(--secondary-color);
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .venue-image {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            aspect-ratio: 4/5;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 4rem;
+            }
+
+            .hero-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+            }
+            
+            .countdown {
+                gap: 0.5rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.8rem;
+            }
+            
+            .number {
+                font-size: 1.5em;
+            }
+            
+            .label {
+                font-size: 0.7em;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 4/5;
+                width: 100%;
+            }
+
+            .details {
+                width: 90%;
+                padding: 2rem;
+                margin: 1.5rem 0;
+            }
+        }
+
+        .dress-code-image {
+            width: 90%;  
+            height: auto; 
+            max-width: 800px; 
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline-time {
+            font-family: var(--font-romantic);
+            font-size: 1.5em;
+            color: var(--accent-color);
+            min-width: 100px;
+            margin-right: 20px;
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+        }
+
+        .timeline-content p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-color);
+        }
+
+        .timeline-item::after {
+            content: '♥';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline {
+                padding: 10px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                padding-left: 40px;
+            }
+            
+            .timeline-time {
+                margin-bottom: 5px;
+            }
+        }
+
+        .author-credit {
+            text-align: center;
+            font-family: var(--font-main);
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--secondary-color);
+            font-size: 0.9em;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-content">
+        <section class="section hero">
+            <div class="hero-content">
+                <h1>María & Juan</h1>
+                <p class="date">15 de Diciembre, 2024</p>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div id="days" class="number">00</div>
+                        <div class="label">Días</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div id="hours" class="number">00</div>
+                        <div class="label">Horas</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div id="minutes" class="number">00</div>
+                        <div class="label">Minutos</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div id="seconds" class="number">00</div>
+                        <div class="label">Segundos</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="details">
+                <h2 class="section-title">Celebramos Nuestro Amor</h2>
+                <p style="font-size: 1.2em; line-height: 1.8; margin: 2rem 0;">
+                    Con la bendición de Dios y nuestras familias,<br>
+                    nos complace invitarte a celebrar<br>
+                    nuestra unión en matrimonio.<br><br>
+                    Este día tan especial no sería lo mismo sin tu presencia.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="details">
+                <h2 class="section-title">Ceremonia & Recepción</h2>
+                <p>16:00 hrs</p>
+                <p>Jardín de las Rosas</p>
+                <img class="venue-image" src="https://images.pexels.com/photos/17023023/pexels-photo-17023023/free-photo-of-restaurante-hotel-cena-arboles.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Vista frontal del Jardín de las Rosas, elegante jardín de eventos con arcos florales" width="800" height="300">
+                <img class="venue-image" src="https://images.pexels.com/photos/17023021/pexels-photo-17023021/free-photo-of-ligero-restaurante-hotel-cena.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Área de recepción del Jardín de las Rosas decorada para bodas" width="800" height="300">
+                <button class="button" onclick="window.open('https://maps.google.com/?q=wedding+venue')">Ver ubicación</button>
+            </div>
+
+            <div class="details">
+                <h2 class="section-title">Itinerario</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">16:00</div>
+                        <div class="timeline-content">
+                            <h3>Recepción de Invitados</h3>
+                            <p>Llegada y registro de invitados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">16:30</div>
+                        <div class="timeline-content">
+                            <h3>Ceremonia Civil</h3>
+                            <p>Celebración de nuestro matrimonio civil</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">17:30</div>
+                        <div class="timeline-content">
+                            <h3>Cóctel de Bienvenida</h3>
+                            <p>Bebidas y aperitivos para todos los invitados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">19:00</div>
+                        <div class="timeline-content">
+                            <h3>Cena</h3>
+                            <p>Cena formal servida a los invitados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">20:30</div>
+                        <div class="timeline-content">
+                            <h3>Primer Baile</h3>
+                            <p>Baile de los novios y apertura de pista</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">21:00</div>
+                        <div class="timeline-content">
+                            <h3>Fiesta</h3>
+                            <p>¡A celebrar y bailar!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details">
+                <h2 class="section-title">Código de Vestimenta</h2>
+                <p>Formal - Colores Pasteles</p>
+                <img 
+                    class="dress-code-image" 
+                    src="https://images.pexels.com/photos/24741984/pexels-photo-24741984/free-photo-of-hombre-traje-pareja-mujer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                    alt="Ejemplo de vestimenta formal en tonos pasteles para boda" 
+                    width="300" 
+                    height="300"
+                >
+            </div>
+
+            <div class="details">
+                <h2 class="section-title" style="margin-bottom: 2rem;">Nos gustaría compartir este día contigo</h2>
+                <h2 class="section-title">Confirma tu Asistencia</h2>
+                <button class="button" onclick="confirmAttendance('groom')">Familia del Novio</button>
+                <button class="button" onclick="confirmAttendance('bride')">Familia de la Novia</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Andábamos sin buscarnos,<br>pero sabiendo que andábamos<br>para encontrarnos</h2>
+            <p class="author-credit">- Julio Cortázar</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1244627/pexels-photo-1244627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios tomados de la mano caminando por un jardín" width="300" height="500">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios abrazados en un momento romántico" width="300" height="500">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios mirándose a los ojos durante su sesión de fotos" width="300" height="500">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/26646539/pexels-photo-26646539/free-photo-of-pareja-enamorada.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios compartiendo un momento íntimo en su boda" width="300" height="500">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios bailando durante su celebración" width="300" height="500">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/19817735/pexels-photo-19817735/free-photo-of-hombre-pareja-amor-mujer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pareja de novios en un momento romántico al atardecer" width="300" height="500">
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2024 | Diseño y Desarrollo por <a href="https://malelemdz.github.io/portfolio/" target="_blank" style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">Malelemdz</a></p>
+        </footer>
+        
+        <div class="floating-music" id="musicControl">♪</div>
+    </div>
+
+    <script>
+        let isPlaying = false;
+        const audio = new Audio('https://github.com/malelemdz/mariayjuan/raw/refs/heads/main/source/Christina%20Perri%20-%20A%20Thousand%20Years.mp3');
+        
+        document.getElementById('musicControl').addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                this.innerHTML = '♪';
+            } else {
+                audio.play();
+                this.innerHTML = '⏸';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        function updateCountdown() {
+            const weddingDate = new Date('2024-12-15T16:00:00');
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        function confirmAttendance(side) {
+            const phone = side === 'groom' ? '+1234567890' : '+0987654321';
+            window.open(`https://wa.me/${phone}?text=Confirmo mi asistencia a la boda`);
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
