@@ -124,11 +124,14 @@
             font-size: 1.2em;
             margin: 1rem;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
+            opacity: 1;
         }
 
         .button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .floating-music {
@@ -368,6 +371,17 @@
         .footer p {
             margin: 0;
         }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -484,8 +498,10 @@
             <div class="details">
                 <h2 class="section-title" style="margin-bottom: 2rem;">Nos gustaría compartir este día contigo</h2>
                 <h2 class="section-title">Confirma tu Asistencia</h2>
-                <button class="button" onclick="confirmAttendance('groom')">Invitados del Novio</button>
-                <button class="button" onclick="confirmAttendance('bride')">Invitados de la Novia</button>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <button class="button" onclick="confirmAttendance('groom')">Invitados del Novio</button>
+                    <button class="button" onclick="confirmAttendance('bride')">Invitados de la Novia</button>
+                </div>
             </div>
         </section>
 
@@ -553,12 +569,39 @@
         }
 
         function confirmAttendance(side) {
-            const phone = side === 'groom' ? '‪+59162643571‬' : '+59162643571';
-            window.open(`https://wa.me/${phone}?text=Hola, quiero un invitación de boda`);
+            const phones = {
+                groom: '59162643571',
+                bride: '59162643571' 
+            };
+            const phone = phones[side];
+            window.open(`https://wa.me/${phone}?text=Hola, quiero una invitación de boda`);
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.details, .gallery-item, .section-title, .timeline-item');
+            elements.forEach(el => {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            });
+        });
     </script>
 </body>
 </html>
